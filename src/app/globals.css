@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  --font-bebas: var(--font-bebas), 'Bebas Neue', sans-serif;
+  --font-mono: var(--font-mono), 'IBM Plex Mono', monospace;
+  --font-sans: var(--font-inter), 'Inter', sans-serif;
+
+  --color-cinema-bg: #0B0B0D;
+  --color-cinema-panel: #151517;
+  --color-cinema-border: #26262A;
+  --color-cinema-red: #FF3B30;
+  --color-cinema-muted: #8E8E96;
+  --color-cinema-light: #EDEDEC;
+}
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+    background-color: #0B0B0D;
+    color: #EDEDEC;
+  }
+}
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Chrome Shimmer Gradient */
+.chrome-text {
+  background: linear-gradient(180deg, #FFFFFF 0%, #C4C4C8 50%, #8E8E96 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Film grain effect */
+.film-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* United Carriers Signature Text Roll Hover */
+.uc-roll {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.uc-roll-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.6s cubic-bezier(0.66, 0, 0.15, 1);
+}
+
+.uc-roll-top {
+  display: block;
+  transform: translateY(0);
+  transition: transform 0.6s cubic-bezier(0.66, 0, 0.15, 1);
+}
+
+.uc-roll-bottom {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: block;
+  transform: translateY(0);
+  transition: transform 0.6s cubic-bezier(0.66, 0, 0.15, 1);
+}
+
+.group:hover .uc-roll-inner,
+.uc-btn:hover .uc-roll-inner,
+.uc-roll:hover .uc-roll-inner {
+  transform: translateY(-100%);
+}
+
+/* United Carriers Signature Hover Underline Sweep */
+.hover-line {
+  --line-spacing: 0.8rem;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.hover-line::before,
+.hover-line::after {
+  content: '';
+  position: absolute;
+  display: block;
+  bottom: 0px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transition: 0.6s transform cubic-bezier(0.66, 0, 0.15, 1);
+}
+
+.hover-line::before {
+  left: 0;
+}
+
+.hover-line::after {
+  left: calc(-1 * var(--line-spacing));
+  transform: translateX(-100%);
+}
+
+.hover-line:hover::before {
+  transform: translateX(calc(100% + var(--line-spacing)));
+}
+
+.hover-line:hover::after {
+  transform: translateX(var(--line-spacing));
+}
+
+/* United Carriers Mask Reveal */
+.line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+.line-inner {
+  display: block;
+  transform: translateY(105%);
+  opacity: 0;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease;
+  will-change: transform, opacity;
+}
+
+.line-inner.line-revealed {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Viewfinder corner brackets with reactive micro-animations */
+.bracket-tl {
+  border-top: 2px solid #FF3B30;
+  border-left: 2px solid #FF3B30;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.bracket-tr {
+  border-top: 2px solid #FF3B30;
+  border-right: 2px solid #FF3B30;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.bracket-bl {
+  border-bottom: 2px solid #FF3B30;
+  border-left: 2px solid #FF3B30;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.bracket-br {
+  border-bottom: 2px solid #FF3B30;
+  border-right: 2px solid #FF3B30;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.group:hover .bracket-tl {
+  transform: translate(-3px, -3px);
+}
+
+.group:hover .bracket-tr {
+  transform: translate(3px, -3px);
+}
+
+.group:hover .bracket-bl {
+  transform: translate(-3px, 3px);
+}
+
+.group:hover .bracket-br {
+  transform: translate(3px, 3px);
+}
+
+/* Marquee ribbon keyframes */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 25s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* REC blink */
+@keyframes rec-blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(0.85);
+  }
+}
+
+.rec-pulse {
+  animation: rec-blink 1.5s ease-in-out infinite;
+}
+
+/* Scanline beam for cinema preview */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(800%);
+  }
+}
+
+.animate-scanline {
+  animation: scanline 6s linear infinite;
+}
