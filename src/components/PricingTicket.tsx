@@ -8,12 +8,12 @@ import { RollingText } from "./RollingText";
 
 export function PricingTicket() {
   const perks = [
-    "Lifetime access to all 19 lessons & future updates",
-    "Cole's private prompt packs & cinematic lighting formulas",
-    "Step-by-step character consistency templates",
-    "Private creator community for weekly feedback & reviews",
-    "Complete sound design & CapCut music scoring blueprints",
-    "Direct algorithmic distribution tactics for YouTube & Facebook",
+    "More than 9+ detailed video lessons & future updates",
+    "A comprehensive guide to free and paid AI tools",
+    "Step-by-step practical learning & prompt workflows",
+    "Personal support via exclusive Telegram group",
+    "Full access on your phone, tablet, or computer",
+    "Lifetime access with a one-time payment of ₦5,000",
   ];
 
   return (
@@ -106,7 +106,7 @@ export function PricingTicket() {
                 </a>
 
                 <a
-                  href="https://selar.com/mrgrey"
+                  href="https://selar.com/919r4914y1"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor-text="SELAR"

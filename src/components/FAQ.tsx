@@ -18,7 +18,7 @@ const FAQS: FAQItem[] = [
   {
     question: "What tools do I need to buy?",
     answer:
-      "Acts I and II cover the exact AI tools Cole uses, including free tools to start with. You don't need any expensive paid software subscriptions prior to enrolling.",
+      "You don't need expensive paid software subscriptions to begin. The course includes a comprehensive guide to both free and paid AI tools, so you can start learning with the tools and resources available to you, then explore more advanced options as your skills develop.",
   },
   {
     question: "Is this only useful for Nigerian-style drama content?",
@@ -28,12 +28,12 @@ const FAQS: FAQItem[] = [
   {
     question: "How do I get access after I pay?",
     answer:
-      "Payment is processed securely via Paystack or Selar. As soon as your order completes, you will receive an instant email notification containing your private member dashboard login and immediate streaming access to all 19 lessons.",
+      "Payment is processed securely via Paystack or Selar. After making payment for this course, you will be redirected directly to the Telegram group where all video tutorials and resources are uploaded.",
   },
   {
     question: "Is there support if I get stuck?",
     answer:
-      "Yes. Your enrollment grants access to our exclusive student creator community where Cole and fellow filmmakers troubleshoot prompts, review scenes, and share new model breakthroughs weekly.",
+      "Yes. Your enrollment includes personal support directly through the Telegram group, where Cole guides you, answers questions, and shares new AI tool updates.",
   },
 ];
 

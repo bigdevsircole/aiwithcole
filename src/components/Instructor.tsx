@@ -24,10 +24,11 @@ export function Instructor() {
                 <div className="pointer-events-none absolute bottom-3 right-3 h-5 w-5 bracket-br z-20" />
 
                 <Image
-                  src="/images/cole_portrait.jpg"
+                  src="/images/cole_portrait.png"
                   alt="Cole - AI Director and Filmmaker"
                   fill
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  priority
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />

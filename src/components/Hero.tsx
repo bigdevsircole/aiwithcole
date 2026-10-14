@@ -1,14 +1,50 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
-import { Play, Globe, Sparkles, X } from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import { Globe, Sparkles } from "lucide-react";
 import { PricingRibbon } from "./PricingRibbon";
 import { ScrollReveal } from "./ScrollReveal";
 import { RollingText, RollingButton } from "./RollingText";
 
 export function Hero() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Set unmuted by default as requested
+    video.muted = false;
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // If the browser autoplay policy restricts audio before user interaction,
+        // start playback muted first to ensure immediate playback, then unmute on the first user interaction
+        video.muted = true;
+        video.play().catch(() => {});
+
+        const enableSound = () => {
+          if (videoRef.current) {
+            videoRef.current.muted = false;
+          }
+          window.removeEventListener("pointerdown", enableSound);
+          window.removeEventListener("keydown", enableSound);
+          window.removeEventListener("touchstart", enableSound);
+        };
+
+        window.addEventListener("pointerdown", enableSound, { once: true });
+        window.addEventListener("keydown", enableSound, { once: true });
+        window.addEventListener("touchstart", enableSound, { once: true });
+      });
+    }
+  }, []);
+
+  const toggleSound = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+    }
+  };
 
   return (
     <section className="relative overflow-hidden pt-6 pb-20 sm:pt-10 sm:pb-28">
@@ -53,7 +89,7 @@ export function Hero() {
             </a>
 
             <a
-              href="https://selar.com/mrgrey"
+              href="https://selar.com/919r4914y1"
               target="_blank"
               rel="noopener noreferrer"
               data-cursor-text="GLOBAL"
@@ -97,11 +133,11 @@ export function Hero() {
           </ScrollReveal>
         </div>
 
-        {/* Video / Reel Player Box with HUD viewfinder and scanline */}
+        {/* Video Box with HUD viewfinder brackets */}
         <ScrollReveal variant="scale-up" delay={500} className="mt-10">
           <div
-            className="group relative overflow-hidden border border-[#26262A] bg-black transition-all duration-300 hover:border-[#FF3B30]/50"
-            data-cursor-text={!isPlaying ? "PLAY" : ""}
+            onClick={toggleSound}
+            className="group relative cursor-pointer overflow-hidden border border-[#26262A] bg-black transition-all duration-300 hover:border-[#FF3B30]/50"
           >
             {/* Viewfinder brackets with interactive corner expand on hover */}
             <div className="pointer-events-none absolute top-3 left-3 h-5 w-5 bracket-tl z-20" />
@@ -109,62 +145,19 @@ export function Hero() {
             <div className="pointer-events-none absolute bottom-3 left-3 h-5 w-5 bracket-bl z-20" />
             <div className="pointer-events-none absolute bottom-3 right-3 h-5 w-5 bracket-br z-20" />
 
-            {/* Subtle cinematic scanline beam */}
-            <div className="pointer-events-none absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-[#FF3B30]/5 to-transparent animate-scanline z-10" />
-
-            {!isPlaying ? (
-              <div
-                className="relative aspect-video w-full cursor-pointer"
-                onClick={() => setIsPlaying(true)}
+            <div className="relative aspect-video w-full bg-black flex items-center justify-center">
+              <video
+                ref={videoRef}
+                src="/videos/you-dont-need-a-camera-you-need-prompt.mp4"
+                autoPlay
+                loop
+                playsInline
+                preload="auto"
+                className="h-full w-full object-contain pointer-events-none"
               >
-                <Image
-                  src="/images/film_preview.jpg"
-                  alt="AI With Cole Cinematic Film Preview"
-                  fill
-                  priority
-                  className="object-cover opacity-85 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                {/* Play Overlay */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center p-4">
-                  <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-full bg-[#FF3B30] text-white shadow-[0_0_40px_rgba(255,59,48,0.8)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-115">
-                    <Play className="h-7 w-7 sm:h-9 sm:w-9 fill-white translate-x-0.5" />
-                  </div>
-                  <div>
-                    <div className="font-bebas text-2xl tracking-wider text-white sm:text-3xl">
-                      WATCH THE SYSTEM IN ACTION
-                    </div>
-                    <p className="font-mono text-xs text-[#8E8E96]">
-                      Click to load the viral scene breakdown
-                    </p>
-                  </div>
-                </div>
-
-                {/* Status pill on bottom */}
-                <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2 bg-black/80 px-3 py-1 font-mono text-[11px] text-[#EDEDEC] backdrop-blur-md border border-[#26262A]">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
-                  <span>TRAILER PREVIEW AVAILABLE</span>
-                </div>
-              </div>
-            ) : (
-              <div className="relative aspect-video w-full bg-black">
-                <button
-                  onClick={() => setIsPlaying(false)}
-                  className="absolute top-4 right-4 z-30 flex items-center gap-1.5 bg-[#151517]/90 px-3 py-1.5 text-xs font-mono text-white hover:bg-[#FF3B30] transition-colors border border-[#26262A]"
-                >
-                  <X className="h-4 w-4" />
-                  <span>CLOSE</span>
-                </button>
-                <iframe
-                  src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fweb.facebook.com%2Freel%2F1341585374747801%2F&show_text=false&width=267&t=0"
-                  className="h-full w-full border-0"
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  allowFullScreen
-                  title="AI Filmmaking Reel Preview"
-                />
-              </div>
-            )}
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
         </ScrollReveal>
 

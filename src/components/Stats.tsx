@@ -19,10 +19,10 @@ const STATS = [
     detail: "Across viral social media channels",
   },
   {
-    number: "19",
-    label: "Lessons Across 5 Acts",
+    number: "9+",
+    label: "Detailed Video Lessons",
     icon: BookOpen,
-    detail: "Step-by-step masterclass modules",
+    detail: "Step-by-step practical masterclass",
   },
   {
     number: "3h+",
