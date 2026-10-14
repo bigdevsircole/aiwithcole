@@ -23,44 +23,21 @@ function InstagramIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function FacebookIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
-  );
-}
-
 export function Contact() {
   const channels = [
     {
       name: "WhatsApp",
-      subtitle: "Message Cole's team directly (Fastest response)",
-      href: "https://wa.me/message/Y3XN5SLQXC3SM1",
+      subtitle: "+234 818 040 2086 · Chat with Cole",
+      href: "https://wa.me/2348180402086",
       icon: MessageCircle,
       accent: "hover:border-emerald-500/50 hover:bg-emerald-950/20",
     },
     {
       name: "Instagram",
-      subtitle: "@aiwithcole · DM for course inquiries",
-      href: "https://www.instagram.com/bigmrgrey?igsh=MXQ5MmpoNWNsN2x2cg%3D%3D&utm_source=qr",
+      subtitle: "@calebyinusa · DM for course inquiries",
+      href: "https://www.instagram.com/calebyinusa/?hl=en",
       icon: InstagramIcon,
       accent: "hover:border-pink-500/50 hover:bg-pink-950/20",
-    },
-    {
-      name: "Facebook",
-      subtitle: "Follow the official AI series page & community",
-      href: "https://www.facebook.com/share/18qu1r39rD/?mibextid=wwXIfr",
-      icon: FacebookIcon,
-      accent: "hover:border-blue-500/50 hover:bg-blue-950/20",
     },
   ];
 
@@ -89,7 +66,7 @@ export function Contact() {
         </div>
 
         {/* Contact Cards with Staggered ScrollReveal and Diagonal Arrow roll */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl">
           {channels.map((channel, idx) => {
             const Icon = channel.icon;
             return (

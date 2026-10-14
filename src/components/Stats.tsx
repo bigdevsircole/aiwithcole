@@ -7,13 +7,13 @@ import { ScrollReveal } from "./ScrollReveal";
 
 const STATS = [
   {
-    number: "2,000+",
+    number: "200+",
     label: "Students Enrolled",
     icon: Users,
     detail: "Creators, editors, directors worldwide",
   },
   {
-    number: "2.6M+",
+    number: "1k+",
     label: "Audience Reach",
     icon: Eye,
     detail: "Across viral social media channels",

@@ -25,7 +25,7 @@ export function Footer() {
         {/* Social Links with Hover Underline Sweep */}
         <div className="flex items-center gap-6 font-mono text-xs text-[#8E8E96]">
           <a
-            href="https://wa.me/message/Y3XN5SLQXC3SM1"
+            href="https://wa.me/2348180402086"
             target="_blank"
             rel="noopener noreferrer"
             className="hover-line hover:text-white transition-colors"
@@ -34,22 +34,13 @@ export function Footer() {
             <RollingText text="WhatsApp" />
           </a>
           <a
-            href="https://www.instagram.com/bigmrgrey?igsh=MXQ5MmpoNWNsN2x2cg%3D%3D&utm_source=qr"
+            href="https://www.instagram.com/calebyinusa/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
             className="hover-line hover:text-white transition-colors"
             data-cursor-text="INSTAGRAM"
           >
             <RollingText text="Instagram" />
-          </a>
-          <a
-            href="https://www.facebook.com/share/18qu1r39rD/?mibextid=wwXIfr"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover-line hover:text-white transition-colors"
-            data-cursor-text="FACEBOOK"
-          >
-            <RollingText text="Facebook" />
           </a>
         </div>
 

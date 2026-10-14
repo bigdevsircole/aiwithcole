@@ -24,7 +24,7 @@ export function Instructor() {
                 <div className="pointer-events-none absolute bottom-3 right-3 h-5 w-5 bracket-br z-20" />
 
                 <Image
-                  src="/images/cole_portrait.png"
+                  src="/images/cole_portrait_result.avif"
                   alt="Cole - AI Director and Filmmaker"
                   fill
                   className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
@@ -64,7 +64,7 @@ export function Instructor() {
             <ScrollReveal variant="fade-up" delay={250}>
               <div className="mt-6 space-y-4 text-sm sm:text-base text-[#8E8E96] leading-relaxed">
                 <p>
-                  Cole pioneered high-retention AI storytelling, directing viral serialized dramas and captivating an audience of over 2.6 million viewers with breathtaking visual consistency and dramatic suspense.
+                  Cole pioneered high-retention AI storytelling, directing viral serialized dramas and captivating an audience of over 1k+ viewers with breathtaking visual consistency and dramatic suspense.
                 </p>
                 <p>
                   Instead of getting bogged down by production roadblocks, expensive rentals, or unpredictable sets, Cole built an agile, automated pipeline that generates studio-level cinematic shorts from anywhere in the world.

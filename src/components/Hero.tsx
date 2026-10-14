@@ -1,49 +1,101 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { Globe, Sparkles } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { Globe, Sparkles, Volume2, VolumeX, RotateCcw } from "lucide-react";
 import { PricingRibbon } from "./PricingRibbon";
 import { ScrollReveal } from "./ScrollReveal";
 import { RollingText, RollingButton } from "./RollingText";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const hasTriggeredRef = useRef<boolean>(false);
+  const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [hasEnded, setHasEnded] = useState<boolean>(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Set unmuted by default as requested
-    video.muted = false;
-    const playPromise = video.play();
+    // Explicitly disable looping so it plays only once
+    video.loop = false;
 
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // If the browser autoplay policy restricts audio before user interaction,
-        // start playback muted first to ensure immediate playback, then unmute on the first user interaction
-        video.muted = true;
-        video.play().catch(() => {});
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setHasEnded(true);
+    };
 
-        const enableSound = () => {
-          if (videoRef.current) {
-            videoRef.current.muted = false;
+    const handlePlay = () => {
+      setIsPlaying(true);
+      setHasEnded(false);
+    };
+
+    const handlePause = () => {
+      setIsPlaying(false);
+    };
+
+    video.addEventListener("ended", handleEnded);
+    video.addEventListener("play", handlePlay);
+    video.addEventListener("pause", handlePause);
+
+    // Play only once when user scrolls to the hero video section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasTriggeredRef.current) {
+            hasTriggeredRef.current = true;
+
+            // Attempt unmuted playback first
+            video.muted = false;
+            setIsMuted(false);
+            const playPromise = video.play();
+
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {
+                // If browser blocks unmuted autoplay before interaction, play muted
+                video.muted = true;
+                setIsMuted(true);
+                video.play().catch(() => {});
+              });
+            }
+
+            // Disconnect immediately so it never re-triggers on scroll
+            observer.disconnect();
           }
-          window.removeEventListener("pointerdown", enableSound);
-          window.removeEventListener("keydown", enableSound);
-          window.removeEventListener("touchstart", enableSound);
-        };
+        });
+      },
+      {
+        threshold: 0.25, // Triggers when 25% of the video box is scrolled into view
+      }
+    );
 
-        window.addEventListener("pointerdown", enableSound, { once: true });
-        window.addEventListener("keydown", enableSound, { once: true });
-        window.addEventListener("touchstart", enableSound, { once: true });
-      });
-    }
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("ended", handleEnded);
+      video.removeEventListener("play", handlePlay);
+      video.removeEventListener("pause", handlePause);
+    };
   }, []);
 
-  const toggleSound = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
+  const handleVideoClick = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (hasEnded) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      setHasEnded(false);
+      setIsPlaying(true);
+      return;
     }
+
+    // Toggle mute
+    const nextMuted = !video.muted;
+    video.muted = nextMuted;
+    setIsMuted(nextMuted);
   };
 
   return (
@@ -60,7 +112,7 @@ export function Hero() {
               <span className="font-mono text-xs tracking-widest text-[#8E8E96]">REC</span>
             </div>
             <div className="font-mono text-xs tracking-wider text-[#8E8E96]">
-              OVER · 2.6 MILLION AUDIENCE REACH
+              OVER · 1k AUDIENCE REACH
             </div>
             <div className="hidden sm:block font-mono text-xs text-[#8E8E96]">
               AI CINEMA · 4K 24FPS
@@ -106,7 +158,17 @@ export function Hero() {
         {/* Hero Title & Copy with Mask-Up Animation */}
         <div className="max-w-4xl">
           <ScrollReveal variant="fade-up" delay={200}>
-            <div className="inline-flex items-center gap-2 border border-[#26262A] bg-[#151517] px-3 py-1 text-xs font-mono text-[#8E8E96] mb-5">
+            <div className="inline-flex items-center gap-2.5 border border-[#26262A] bg-[#151517] px-3 py-1.5 text-xs font-mono text-[#8E8E96] mb-5">
+              <div className="relative h-5 w-5 rounded-full overflow-hidden border border-[#FF3B30]/40 shrink-0">
+                <Image
+                  src="/images/cole_portrait_result.avif"
+                  alt="Cole - Creator"
+                  fill
+                  className="object-cover object-top"
+                />
+              </div>
+              <span className="text-[#EDEDEC] font-semibold">COLE</span>
+              <span className="text-[#38383E]">•</span>
               <Sparkles className="h-3.5 w-3.5 text-[#FF3B30]" />
               <span>THE DEFINITIVE AI FILMMAKING BLUEPRINT</span>
             </div>
@@ -127,7 +189,7 @@ export function Hero() {
 
           <ScrollReveal variant="fade-up" delay={450}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-[#8E8E96] sm:text-lg">
-              Cole is the director and creator behind viral AI drama series and high-impact cinematic storytelling.
+              Cole is the director and creator behind viral AI drama series and high-impact cinematic storytelling for businesses and individuals.
               He is opening up the exact system he uses to write, shoot, cut, and post episodes without a camera, a cast, or a production crew.
             </p>
           </ScrollReveal>
@@ -136,8 +198,9 @@ export function Hero() {
         {/* Video Box with HUD viewfinder brackets */}
         <ScrollReveal variant="scale-up" delay={500} className="mt-10">
           <div
-            onClick={toggleSound}
+            onClick={handleVideoClick}
             className="group relative cursor-pointer overflow-hidden border border-[#26262A] bg-black transition-all duration-300 hover:border-[#FF3B30]/50"
+            data-cursor-text={hasEnded ? "REPLAY" : isMuted ? "UNMUTE" : "MUTE"}
           >
             {/* Viewfinder brackets with interactive corner expand on hover */}
             <div className="pointer-events-none absolute top-3 left-3 h-5 w-5 bracket-tl z-20" />
@@ -149,14 +212,36 @@ export function Hero() {
               <video
                 ref={videoRef}
                 src="/videos/you-dont-need-a-camera-you-need-prompt.mp4"
-                autoPlay
-                loop
                 playsInline
-                preload="auto"
+                preload="metadata"
                 className="h-full w-full object-contain pointer-events-none"
               >
                 Your browser does not support the video tag.
               </video>
+
+              {/* Bottom HUD Overlay for Sound & Play Status */}
+              <div className="pointer-events-none absolute bottom-3 right-3 z-20 flex items-center gap-2">
+                {hasEnded ? (
+                  <div className="flex items-center gap-1.5 border border-[#FF3B30]/60 bg-[#0B0B0D]/90 px-3 py-1 font-mono text-[11px] text-white shadow-lg backdrop-blur-md">
+                    <RotateCcw className="h-3 w-3 text-[#FF3B30]" />
+                    <span>WATCH AGAIN</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1.5 border border-[#26262A] bg-[#0B0B0D]/80 px-2.5 py-1 font-mono text-[11px] text-[#8E8E96] backdrop-blur-md">
+                    {isMuted ? (
+                      <>
+                        <VolumeX className="h-3.5 w-3.5 text-[#FF3B30]" />
+                        <span>MUTED · CLICK TO UNMUTE</span>
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="h-3.5 w-3.5 text-emerald-400" />
+                        <span>AUDIO ON</span>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </ScrollReveal>

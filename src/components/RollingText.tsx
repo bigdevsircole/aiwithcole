@@ -64,7 +64,7 @@ export function RollingButton({
     <a
       href={href}
       target={target}
-      rel={rel}
+      rel={target === "_blank" ? (rel ? `${rel} noopener noreferrer` : "noopener noreferrer") : rel}
       onClick={onClick}
       data-cursor-text={cursorText}
       className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden px-5 py-3 font-mono text-xs font-semibold tracking-wider transition-all duration-300 active:scale-[0.98] ${variantStyles[variant]} ${className}`}
