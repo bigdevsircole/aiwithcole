@@ -51,6 +51,11 @@ export const metadata: Metadata = {
     "AI content creation",
   ],
   authors: [{ name: "Cole" }],
+  icons: {
+    icon: "/ai-with-cole_result.avif",
+    shortcut: "/ai-with-cole_result.avif",
+    apple: "/ai-with-cole_result.avif",
+  },
   openGraph: {
     title: "AI WITH COLE | Master AI Filmmaking",
     description:
@@ -61,7 +66,7 @@ export const metadata: Metadata = {
     siteName: "AI WITH COLE",
     images: [
       {
-        url: "/ai-with-cole-cinematic-logo_result.avif",
+        url: "/ai-with-cole_result.avif",
         width: 1200,
         height: 630,
         alt: "AI WITH COLE — Master AI Filmmaking",
@@ -73,7 +78,7 @@ export const metadata: Metadata = {
     title: "AI WITH COLE | Master AI Filmmaking",
     description:
       "Create cinematic AI films using modern AI tools and professional workflows.",
-    images: ["/ai-with-cole-cinematic-logo_result.avif"],
+    images: ["/ai-with-cole_result.avif"],
   },
 };
 
