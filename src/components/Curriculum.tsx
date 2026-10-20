@@ -9,6 +9,7 @@ import {
   Video, 
   Film, 
   Image as ImageIcon, 
+  Palette,
   Volume2, 
   Sparkles, 
   TrendingUp, 
@@ -91,8 +92,16 @@ const WHAT_YOULL_LEARN: CourseTopic[] = [
     icon: ImageIcon,
   },
   {
-    id: "sound-voice",
+    id: "poster-design",
     number: "08",
+    title: "AI Realistic Poster Design",
+    description: "Discover how to design posters for your brand and personal use.",
+    category: "Visual Assets",
+    icon: Palette,
+  },
+  {
+    id: "sound-voice",
+    number: "09",
     title: "AI Voiceovers, Sound & Music",
     description: "Discover how to enhance your productions with narration, sound effects, and music using AI tools.",
     category: "Audio Design",
@@ -100,7 +109,7 @@ const WHAT_YOULL_LEARN: CourseTopic[] = [
   },
   {
     id: "cinematic-vfx",
-    number: "09",
+    number: "10",
     title: "Cinematic Editing & Visual Effects",
     description: "Learn how to combine scenes, improve pacing, and make your final videos more engaging.",
     category: "Post-Production",
@@ -108,7 +117,7 @@ const WHAT_YOULL_LEARN: CourseTopic[] = [
   },
   {
     id: "continuous-growth",
-    number: "10",
+    number: "11",
     title: "Continuous Learning & AI Updates",
     description: "Develop the habit of exploring new AI tools, features, and techniques as the technology evolves.",
     category: "Mastery & Future",
@@ -138,7 +147,7 @@ export function Curriculum() {
   const [activeCategory, setActiveCategory] = useState<string>("ALL");
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
 
-  const categories = ["ALL", "Story & Concept", "Visual Identity", "Video Synthesis", "Audio Design", "Post-Production"];
+  const categories = ["ALL", "Story & Concept", "Visual Identity", "Video Synthesis", "Visual Assets", "Audio Design", "Post-Production"];
 
   const filteredTopics = activeCategory === "ALL" 
     ? WHAT_YOULL_LEARN 
@@ -161,7 +170,7 @@ export function Curriculum() {
             </div>
 
             <div className="font-mono text-xs text-[#8E8E96]">
-              10 CORE PILLARS · 9+ VIDEO LESSONS
+              11 CORE PILLARS · 10+ VIDEO LESSONS
             </div>
           </div>
         </ScrollReveal>

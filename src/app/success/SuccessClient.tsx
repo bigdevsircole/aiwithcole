@@ -2,25 +2,24 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { 
-  Check, 
-  Send, 
-  MessageCircle, 
-  Copy, 
-  CheckCheck, 
-  AlertCircle, 
-  Sparkles, 
-  ArrowRight, 
+import {
+  Check,
+  Send,
+  MessageCircle,
+  Copy,
+  CheckCheck,
+  AlertCircle,
+  Sparkles,
+  ArrowRight,
   HelpCircle,
   FileText,
-  Mic,
   Lightbulb,
   ExternalLink
 } from "lucide-react";
 
 // PERSONALIZED COMMUNITY & SUPPORT CONFIGURATION
 // You can replace this Telegram link with your private VIP invite link whenever needed:
-export const TELEGRAM_INVITE_URL = "https://t.me/+aiwithcole";
+export const TELEGRAM_INVITE_URL = "https://t.me/+fa2es2blgphlZjhk";
 export const WHATSAPP_NUMBER_INTL = "+234 818 040 2086";
 export const WHATSAPP_NUMBER_LOCAL = "0818 040 2086";
 export const WHATSAPP_CHAT_URL = "https://wa.me/2348180402086?text=Hi%20Cole,%20I%20just%20enrolled%20in%20AI%20With%20Cole!";
@@ -110,7 +109,7 @@ export default function SuccessClient() {
             </h2>
 
             <p className="mt-2 text-sm text-[#8E8E96] leading-relaxed">
-              Everything you need to begin your AI filmmaking journey is hosted inside our private Telegram community — full HD video lessons, prompt templates, tool guides, and direct mentorship from Cole.
+              Everything you need to begin your AI journey is hosted inside our private Telegram community — full HD video lessons, prompt templates, tool guides, and direct mentorship from Cole.
             </p>
 
             <div className="mt-6">
@@ -147,22 +146,16 @@ export default function SuccessClient() {
                 </div>
                 <div className="space-y-2">
                   <h3 className="font-sans text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                    <span>Locate the Two Pinned Messages</span>
+                    <span>Locate the Pinned Messages</span>
                   </h3>
                   <p className="text-xs sm:text-sm text-[#8E8E96] leading-relaxed">
-                    As soon as you enter the VIP Telegram channel, inspect the <strong className="text-white">TWO PINNED MESSAGES</strong> at the very top of the chat:
+                    As soon as you enter the VIP Telegram channel, inspect the <strong className="text-white">PINNED MESSAGES</strong> at the very top of the chat:
                   </p>
                   <ul className="space-y-2 pt-1 font-mono text-xs text-[#EDEDEC]">
                     <li className="flex items-start gap-2 bg-[#151517] p-2.5 border border-[#26262A]">
                       <FileText className="h-4 w-4 text-[#FF3B30] shrink-0 mt-0.5" />
                       <span>
-                        <strong className="text-white">Pinned Message 1:</strong> The complete <strong>Course Outline & Direct Video Links</strong> covering all lessons from script to final video render.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2 bg-[#151517] p-2.5 border border-[#26262A]">
-                      <Mic className="h-4 w-4 text-[#FF3B30] shrink-0 mt-0.5" />
-                      <span>
-                        <strong className="text-white">Pinned Message 2:</strong> A detailed <strong>Voice Note from Cole</strong> detailing how to study efficiently and get your creative work reviewed and promoted.
+                        <strong className="text-white">Pinned Message:</strong> The complete <strong>Course Outline & Direct Video Links</strong> covering all lessons from script to final video render.
                       </span>
                     </li>
                   </ul>
