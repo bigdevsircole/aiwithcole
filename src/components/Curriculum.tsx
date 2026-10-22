@@ -19,11 +19,29 @@ import {
   HelpCircle,
   GraduationCap,
   ShieldCheck,
-  Send
+  Send,
+  Globe
 } from "lucide-react";
 import { PricingRibbon } from "./PricingRibbon";
 import { ScrollReveal } from "./ScrollReveal";
 import { RollingText } from "./RollingText";
+
+function YoutubeIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+      <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="currentColor" strokeWidth="1" />
+    </svg>
+  );
+}
 
 interface CourseTopic {
   id: string;
@@ -116,8 +134,24 @@ const WHAT_YOULL_LEARN: CourseTopic[] = [
     icon: Sparkles,
   },
   {
-    id: "continuous-growth",
+    id: "youtube-automation",
     number: "11",
+    title: "YouTube Automation",
+    description: "Learn how to automate content creation, streamline your video production pipeline, and scale your YouTube channel using AI.",
+    category: "Automation & Tools",
+    icon: YoutubeIcon,
+  },
+  {
+    id: "useful-websites",
+    number: "12",
+    title: "Access to 500+ Useful Websites",
+    description: "Get access to websites that can be used to complete utility tasks.",
+    category: "Automation & Tools",
+    icon: Globe,
+  },
+  {
+    id: "continuous-growth",
+    number: "13",
     title: "Continuous Learning & AI Updates",
     description: "Develop the habit of exploring new AI tools, features, and techniques as the technology evolves.",
     category: "Mastery & Future",
@@ -147,7 +181,7 @@ export function Curriculum() {
   const [activeCategory, setActiveCategory] = useState<string>("ALL");
   const [expandedTopic, setExpandedTopic] = useState<string | null>(null);
 
-  const categories = ["ALL", "Story & Concept", "Visual Identity", "Video Synthesis", "Visual Assets", "Audio Design", "Post-Production"];
+  const categories = ["ALL", "Story & Concept", "Visual Identity", "Video Synthesis", "Visual Assets", "Audio Design", "Post-Production", "Automation & Tools"];
 
   const filteredTopics = activeCategory === "ALL" 
     ? WHAT_YOULL_LEARN 
@@ -170,7 +204,7 @@ export function Curriculum() {
             </div>
 
             <div className="font-mono text-xs text-[#8E8E96]">
-              11 CORE PILLARS · 10+ VIDEO LESSONS
+              13 CORE PILLARS · 10+ VIDEO LESSONS
             </div>
           </div>
         </ScrollReveal>
@@ -213,7 +247,7 @@ export function Curriculum() {
           </div>
         </ScrollReveal>
 
-        {/* 10 Core Modules Grid */}
+        {/* 13 Core Modules Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {filteredTopics.map((topic, index) => {
             const Icon = topic.icon;
