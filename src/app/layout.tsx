@@ -30,9 +30,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aiwithcole.web.app"),
-  title: "AI WITH COLE | Master AI Filmmaking & Viral Content Creation",
+  title: "AI WITH COLE | Master AI with sir cole",
   description:
-    "Master AI filmmaking from idea to final cinematic film. Learn prompting, character consistency, storytelling, image generation, animation, voiceovers, sound design, editing, and distribution using Cole's viral AI workflow.",
+    "Master AI with sir cole from idea to final cinematic film. Learn prompting, character consistency, storytelling, image generation, animation, voiceovers, sound design, editing, and distribution using Cole's viral AI workflow.",
   keywords: [
     "AI with Cole",
     "Cole AI Filmmaking",
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     apple: "/ai-with-cole_result.avif",
   },
   openGraph: {
-    title: "AI WITH COLE | Master AI Filmmaking",
+    title: "AI WITH COLE | Master AI with sir cole",
     description:
-      "Learn the complete AI filmmaking workflow used to create cinematic stories without actors, expensive cameras or film crews.",
+      "Learn how to use AI for scripting, storyboarding,images,videos, posters, video call, youtube automation with prompts and best tools.",
     url: "https://aiwithcole.web.app",
     type: "website",
     locale: "en_US",
@@ -69,13 +69,13 @@ export const metadata: Metadata = {
         url: "/ai-with-cole_result.avif",
         width: 1200,
         height: 630,
-        alt: "AI WITH COLE — Master AI Filmmaking",
+        alt: "AI WITH COLE — Master AI sir cole",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI WITH COLE | Master AI Filmmaking",
+    title: "AI WITH COLE | Master AI sir cole",
     description:
       "Create cinematic AI films using modern AI tools and professional workflows.",
     images: ["/ai-with-cole_result.avif"],
