@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI WITH COLE | Master AI with sir cole",
     description:
-      "Learn how to use AI for scripting, storyboarding,images,videos, posters, video call, youtube automation with prompts and best tools.",
+      "Learn how to use AI for scripting, storyboards, images, videos, posters, video call, youtube automation with prompts and best tools.",
     url: "https://aiwithcole.web.app",
     type: "website",
     locale: "en_US",
